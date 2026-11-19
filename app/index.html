@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice Coast Cover Studio — GTA-style cover art maker</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">VC</span>
+    <div>
+      <h1>Vice Coast Cover Studio</h1>
+      <p>Turn any photo into GTA-style multi-panel cover art — offline, free, no upload.</p>
+    </div>
+  </div>
+  <div class="top-actions">
+    <button id="btn-sample" class="btn btn-ghost" type="button">Use sample scene</button>
+    <button id="btn-export" class="btn btn-primary" type="button">Export PNG</button>
+  </div>
+</header>
+
+<main class="workspace">
+  <section class="panel controls" aria-label="Cover controls">
+    <h2>1 · Photos</h2>
+    <label class="upload-box" for="file-input">
+      <span class="upload-big">Drop photos here or click to choose</span>
+      <span class="upload-small">JPG or PNG, stays on your machine — never uploaded.</span>
+      <input id="file-input" type="file" accept="image/*" multiple hidden>
+    </label>
+    <div id="photo-strip" class="photo-strip" aria-label="Loaded photos"></div>
+    <p class="hint">Click a photo, then click a panel in the preview to put it there. Drag a panel to reposition its photo, use the zoom slider to crop tighter.</p>
+
+    <h2>2 · Caption</h2>
+    <label class="field-label" for="title-input">Title</label>
+    <input id="title-input" class="text-input" type="text" value="NEON SHORE" maxlength="24" autocomplete="off">
+    <label class="field-label" for="subtitle-input">Subtitle</label>
+    <input id="subtitle-input" class="text-input" type="text" value="one night in vice city" maxlength="48" autocomplete="off">
+    <label class="field-label" for="badge-input">Badge</label>
+    <input id="badge-input" class="text-input" type="text" value="VICE COAST" maxlength="18" autocomplete="off">
+
+    <h2>3 · Layout</h2>
+    <div id="layout-picker" class="choice-row" role="group" aria-label="Panel layout"></div>
+
+    <h2>4 · Sunset grade</h2>
+    <div id="grade-picker" class="choice-row" role="group" aria-label="Colour grade"></div>
+
+    <h2>5 · Export size</h2>
+    <div id="size-picker" class="choice-row" role="group" aria-label="Export size"></div>
+
+    <h2>Panel photo</h2>
+    <div class="panel-tools">
+      <label class="field-label" for="zoom-slider">Zoom <span id="zoom-value">1.00×</span></label>
+      <input id="zoom-slider" type="range" min="1" max="2.6" step="0.01" value="1.15">
+      <div class="btn-row">
+        <button id="btn-fill-all" class="btn btn-ghost" type="button">Fill all panels with this photo</button>
+        <button id="btn-shuffle" class="btn btn-ghost" type="button">Shuffle panels</button>
+      </div>
+    </div>
+
+    <label class="check-row"><input id="toggle-grain" type="checkbox" checked> Film grain</label>
+    <label class="check-row"><input id="toggle-vignette" type="checkbox" checked> Vignette</label>
+    <label class="check-row"><input id="toggle-frame" type="checkbox" checked> White poster frame</label>
+
+    <p class="fineprint">Original art made by this app. Not affiliated with Rockstar Games. No logos, artwork or fonts from any game are used — titles use your system fonts only.</p>
+  </section>
+
+  <section class="panel preview-panel" aria-label="Live cover preview">
+    <div class="preview-head">
+      <h2>Live preview</h2>
+      <span id="preview-size" class="preview-size">1080 × 1080</span>
+    </div>
+    <div id="stage" class="stage">
+      <canvas id="preview" width="1080" height="1080"></canvas>
+      <div id="panel-hint" class="panel-hint">Click a panel to select it · drag to move its photo</div>
+    </div>
+    <ol class="steps">
+      <li><b>1.</b> Add a photo (or use the sample scene)</li>
+      <li><b>2.</b> Pick a layout and a sunset grade</li>
+      <li><b>3.</b> Type your title, then Export PNG</li>
+    </ol>
+  </section>
+</main>
+
+<script type="module" src="src/main.js"></script>
+</body>
+</html>
